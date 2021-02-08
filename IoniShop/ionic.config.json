@@ -1,0 +1,7 @@
+{
+  "name": "IoniShop",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
