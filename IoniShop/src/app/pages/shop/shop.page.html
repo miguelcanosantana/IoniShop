@@ -1,9 +1,50 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>shop</ion-title>
+
+    <ion-buttons slot="start">
+
+      <ion-buttons slot="start">
+        <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-buttons>
+
+    </ion-buttons>
+
+    <ion-title>Shop</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+  <!-- Go to Cart Button-->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+  <!-- Grid of Products -->
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size-xs="12" size-sm="6" size-xl="4" *ngFor="let p of productList | async">
+
+        <ion-card>
+  
+          <ion-card-content>
+            <img src="{{p.photo}}" alt="Can't load {{p.name}} image">
+          </ion-card-content>
+
+          <ion-card-header>
+            <ion-card-subtitle>{{p.shortDesc}}</ion-card-subtitle>
+            <ion-card-title>{{p.name}}</ion-card-title>
+          </ion-card-header>
+
+        </ion-card>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

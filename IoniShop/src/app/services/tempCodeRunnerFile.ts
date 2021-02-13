@@ -1,0 +1,1 @@
+and make a clone with Uid, Name and Surname inside the DB

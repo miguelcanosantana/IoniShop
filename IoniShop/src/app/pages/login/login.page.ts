@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   //Variables
-  email: String;
-  password: String;
+  email: string;
+  password: string;
+
 
   constructor(private router: Router) { }
 
@@ -21,7 +22,6 @@ export class LoginPage implements OnInit {
 
   //Login and Redirect to Shop Page
   goToShop() {
-
   }
 
 

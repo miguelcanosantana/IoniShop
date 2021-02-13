@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Product } from 'src/app/model/product';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-shop',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopPage implements OnInit {
 
-  constructor() { }
+  //List of products to get from FireBase
+  productList: Observable<Product[]>;
 
-  ngOnInit() {
+  constructor(
+    private productsService: ProductsService,
+    private router: Router
+    ) { 
+
+    //Get list of Shop products
+    this.productList = this.productsService.getItems();
+  }
+
+  ngOnInit() { }
+
+  //Redirect to Shopping Cart
+  goToCart() {
+    this.router.navigateByUrl('/cart')
   }
 
 }
