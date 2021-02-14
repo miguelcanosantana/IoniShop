@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../model/product';
@@ -24,6 +24,12 @@ export class ProductsService {
         )
       )
     );
+  }
+
+
+  //Add a product to FireStore
+  public submitProduct(product: Product): Promise<DocumentReference> {
+    return this.fireStore.collection('products/').add(product);
   }
 
 

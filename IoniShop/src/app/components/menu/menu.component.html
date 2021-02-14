@@ -9,8 +9,32 @@
 
       <!-- Create Product -->
       <ion-item (click)="goToUrl('/create')">
-        <ion-icon name="add" slot="end"></ion-icon>
+        <ion-icon name="add-circle" slot="end"></ion-icon>
         <ion-label>Create Product</ion-label>
+      </ion-item>
+
+      <!-- Store DashBoard -->
+      <ion-item (click)="goToUrl('/dashboard')">
+        <ion-icon name="hammer" slot="end"></ion-icon>
+        <ion-label>Store Dashboard</ion-label>
+      </ion-item>
+
+      <!-- User Account -->
+      <ion-item (click)="goToUrl('/account')">
+        <ion-icon name="person" slot="end"></ion-icon>
+        <ion-label>User Account</ion-label>
+      </ion-item>
+
+      <!-- App Settings -->
+      <ion-item (click)="goToUrl('/settings')">
+        <ion-icon name="settings" slot="end"></ion-icon>
+        <ion-label>App Settings</ion-label>
+      </ion-item>
+
+      <!-- Close Session -->
+      <ion-item (click)="goToUrl()">
+        <ion-icon name="exit" slot="end"></ion-icon>
+        <ion-label>Close Session</ion-label>
       </ion-item>
 
     </ion-list>

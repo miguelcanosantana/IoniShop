@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private menu: MenuController,
     ) { }
+    
 
   ngOnInit() {}
 

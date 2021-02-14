@@ -39,6 +39,14 @@ const routes: Routes = [
     path: 'edit',
     loadChildren: () => import('./pages/edit/edit.module').then( m => m.EditPageModule)
   },
+  {
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then( m => m.AccountPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
 ];
 
 @NgModule({

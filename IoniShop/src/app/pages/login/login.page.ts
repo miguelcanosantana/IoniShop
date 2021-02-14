@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,21 @@ export class LoginPage implements OnInit {
   password: string;
 
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private menu: MenuController
+    ) { }
 
 
   ngOnInit() {
+  }
+
+
+  //Using ionViewDidEnter instead ionViewWillEnter prevents missing menu hide animation
+  ionViewDidEnter() {
+
+    //Disable Menu
+    this.menu.enable(false);
   }
 
 
