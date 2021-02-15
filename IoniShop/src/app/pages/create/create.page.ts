@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Product } from 'src/app/model/product';
 import { ProductsService } from 'src/app/services/products.service';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -25,7 +27,9 @@ export class CreatePage implements OnInit {
 
   constructor(
     private menu: MenuController,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private router: Router,
+    public toast: ToastController
     ) { }
 
 
@@ -53,7 +57,24 @@ export class CreatePage implements OnInit {
       category: this.category
     };
 
-    this.productService.submitProduct(this.product);
+    //If they are not null or empty do it and Redirect, else show Toast
+    if (this.name && this.photo && this.price && this.shortDesc && this.longDesc && this.category) {
+      this.productService.submitProduct(this.product);
+      this.router.navigateByUrl('/shop');
+
+    } else this.presentToast();
+
+    
+  }
+
+
+  //Show an empty values toast
+  async presentToast() {
+    const toast = await this.toast.create({
+      message: "Fields can't be empty.",
+      duration: 2000
+    });
+    toast.present();
   }
 
 }

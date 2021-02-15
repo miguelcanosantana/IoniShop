@@ -29,15 +29,16 @@
 
       <ion-col size-xs="12" size-sm="6" size-xl="4" *ngFor="let p of productList | async">
 
-        <ion-card>
+        <ion-card class="card">
   
-          <ion-card-content>
-            <img src="{{p.photo}}" alt="Can't load {{p.name}} image">
+          <ion-card-content class="ion-text-center">
+            <img class="card-image" src="{{p.photo}}" alt="Can't load {{p.name}} image">
           </ion-card-content>
 
           <ion-card-header>
             <ion-card-subtitle>{{p.shortDesc}}</ion-card-subtitle>
             <ion-card-title>{{p.name}}</ion-card-title>
+            <ion-card-title>{{p.price}}€</ion-card-title>
           </ion-card-header>
 
         </ion-card>

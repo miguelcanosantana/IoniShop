@@ -6,36 +6,6 @@
 
 <ion-content class="ion-padding">
 
-  <!-- Name Input -->
-  <ion-grid>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
-        <ion-item>
-          <ion-label position="floating">Name</ion-label>
-          <ion-input [(ngModel)]="name" ></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-  </ion-grid>
-
-
-  <!-- Last Name Input -->
-  <ion-grid>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
-        <ion-item>
-          <ion-label position="floating">Last Name</ion-label>
-          <ion-input [(ngModel)]="last" ></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-  </ion-grid>
-
-
   <!-- Email Input -->
   <ion-grid>
     <ion-row>
@@ -73,7 +43,7 @@
       <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
 
         <!-- Register -->
-        <ion-button expand="block">Register</ion-button>
+        <ion-button (click)="registerUser()" expand="block">Register</ion-button>
 
         <!-- Go Back -->
         <ion-button (click)="goBack()" expand="block" fill="clear">Go Back</ion-button>

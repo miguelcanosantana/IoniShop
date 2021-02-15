@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
+import { User } from '../model/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  //Variables
+  userId: string;
+  name: string;
+  surname: string;
+  isAdmin: boolean;
 
-
-
-
-
-  //* Create Auth User (send to auth.service) and make a clone with Uid, Name and Surname inside the DB
-  private createUser(email: String, password: String, name: String, surname: String) {
-
-  }
+  constructor(
+    private fireStore: AngularFirestore,
+    private authService: AuthService
+    ) { }
 
 }

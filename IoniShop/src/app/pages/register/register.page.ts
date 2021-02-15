@@ -1,7 +1,7 @@
-import { ParseSpan } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/model/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -17,19 +17,24 @@ export class RegisterPage implements OnInit {
   last: string;
   email: string;
   password: string;
-
-  /*
-  user: User = {
-    name: this.name,
-    surname: this.last,
-    isAdmin: false
-  }*/
+  isAdmin: boolean;
 
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    ) { }
 
 
   ngOnInit() {
+  }
+
+
+  //*Register User, login and redirect
+  async registerUser() {
+
+    await this.authService.createUser(this.email, this.password);
+    this.router.navigateByUrl('/shop');
   }
 
 

@@ -4,6 +4,7 @@ import { MenuController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/model/product';
 import { ProductsService } from 'src/app/services/products.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-shop',
@@ -15,8 +16,14 @@ export class ShopPage implements OnInit {
   //List of products to get from FireBase
   productList: Observable<Product[]>;
 
+  //Variables
+  name: String;
+  surname: String;
+  isAdmin: String;
+
   constructor(
     private productsService: ProductsService,
+    private userService: UserService,
     private router: Router,
     private menu: MenuController
     ) {
@@ -34,7 +41,7 @@ export class ShopPage implements OnInit {
     //Enable Menu
     this.menu.enable(true);
   }
-  
+
 
   //Redirect to Shopping Cart
   goToCart() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
-    private menu: MenuController
+    private menu: MenuController,
+    private fireAuth: AuthService
     ) { }
 
 
@@ -33,7 +35,9 @@ export class LoginPage implements OnInit {
 
 
   //Login and Redirect to Shop Page
-  goToShop() {
+  async goToShop() {
+    await this.fireAuth.loginUser(this.email, this.password);
+    this.router.navigateByUrl('/shop');
   }
 
 
