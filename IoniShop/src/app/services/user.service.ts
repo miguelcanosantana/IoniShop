@@ -17,6 +17,26 @@ export class UserService {
   constructor(
     private fireStore: AngularFirestore,
     private authService: AuthService
-    ) { }
+    ) {
+  }
+  
+
+  //Create User inside DB knowing it's Uid
+  public createUser(givenName: string, givenLast: string, givenAdmin: boolean) : Promise<DocumentReference> {
+
+    this.authService.getCurrentUser().subscribe(
+      data => this.userId = data.uid
+    )
+    //
+    let tempUser: User = {
+      fireId: "5555",
+      name: givenName,
+      surname: givenLast,
+      isAdmin: givenAdmin
+    }
+
+    return this.fireStore.collection('users/' + this.userId + '/info').add(tempUser);
+  }
+
 
 }

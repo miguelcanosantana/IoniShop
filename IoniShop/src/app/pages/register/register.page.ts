@@ -23,6 +23,7 @@ export class RegisterPage implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private userService: UserService
     ) { }
 
 
@@ -34,6 +35,7 @@ export class RegisterPage implements OnInit {
   async registerUser() {
 
     await this.authService.createUser(this.email, this.password);
+    await this.userService.createUser(this.name, this.last, false);
     this.router.navigateByUrl('/shop');
   }
 
