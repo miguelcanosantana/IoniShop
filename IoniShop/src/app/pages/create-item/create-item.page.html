@@ -1,9 +1,110 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>create-item</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/shop"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create a new Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+  <!-- Name Input -->
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+        <ion-item>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input [(ngModel)]="name" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Image Input -->
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+        <ion-item>
+          <ion-label position="floating">Image</ion-label>
+          <ion-input [(ngModel)]="photo" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Price Input -->
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+        <ion-item>
+          <ion-label position="floating">Price</ion-label>
+          <ion-input type="number" [(ngModel)]="price" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Short Description Input -->
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+        <ion-item>
+          <ion-label position="floating">Short Description</ion-label>
+          <ion-input [(ngModel)]="shortDesc" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Long Description Input -->
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+        <ion-item>
+          <ion-label position="floating">Long Description</ion-label>
+          <ion-input [(ngModel)]="longDesc" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Category Input -->
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+        <ion-item>
+          <ion-label position="floating">Category</ion-label>
+          <ion-input [(ngModel)]="category" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Button -->
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+
+        <!-- Submit -->
+        <ion-button (click)="submitProduct()" expand="block">Submit</ion-button>
+
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

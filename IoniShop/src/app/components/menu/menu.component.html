@@ -1,0 +1,36 @@
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Options</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+
+      <!-- Create Item -->
+      <ion-item (click)="goToUrl('/create-item')">
+        <ion-icon name="add-circle" slot="end"></ion-icon>
+        <ion-label>Create Item</ion-label>
+      </ion-item>
+
+      <!-- Store DashBoard -->
+      <ion-item (click)="goToUrl('/dashboard')">
+        <ion-icon name="hammer" slot="end"></ion-icon>
+        <ion-label>Store Dashboard</ion-label>
+      </ion-item>
+
+      <!-- User Account -->
+      <ion-item (click)="goToUrl('/account')">
+        <ion-icon name="person" slot="end"></ion-icon>
+        <ion-label>User Account</ion-label>
+      </ion-item>
+
+      <!-- App Settings -->
+      <ion-item (click)="goToUrl('/settings')">
+        <ion-icon name="settings" slot="end"></ion-icon>
+        <ion-label>App Settings</ion-label>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
