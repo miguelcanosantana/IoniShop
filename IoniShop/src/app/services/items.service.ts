@@ -9,7 +9,9 @@ import { Item } from '../model/item';
 })
 export class ItemsService {
 
+  
   constructor(private fireStore: AngularFirestore) { }
+
 
   //Get all items from FireStore
   public getItems(): Observable<Item[]> {

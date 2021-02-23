@@ -19,7 +19,7 @@ export class CreateItemPage implements OnInit {
   longDesc: string;
   category: string;
 
-  product: Item;
+  item: Item;
 
 
   constructor(
@@ -43,9 +43,9 @@ export class CreateItemPage implements OnInit {
 
 
   //*Submit Product using Service
-  submitProduct() {
+  submitItem() {
 
-    this.product = {
+    this.item = {
       name: this.name,
       photo: this.photo,
       price: this.price,
@@ -56,8 +56,8 @@ export class CreateItemPage implements OnInit {
 
     //If they are not null or empty do it and Redirect, else show Toast
     if (this.name && this.photo && this.price && this.shortDesc && this.longDesc && this.category) {
-      this.itemService.submitItem(this.product);
-      this.router.navigateByUrl('/shop');
+      this.itemService.submitItem(this.item);
+      this.router.navigateByUrl('/store');
 
     } else this.presentToast();
 

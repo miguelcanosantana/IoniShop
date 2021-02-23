@@ -34,7 +34,18 @@
           <ion-card-header>
             <ion-card-subtitle>{{item.shortDesc}}</ion-card-subtitle>
             <ion-card-title>{{item.name}}</ion-card-title>
-            <ion-card-title>{{item.price}}€</ion-card-title>
+            <ion-card-title>{{item.price | currency}}</ion-card-title>
+
+            <!-- See details -->
+            <ion-button (click)="onClick()" expand="block" fill="clear">
+              See details
+            </ion-button>
+
+            <ion-button (click)="onClick()" expand="block" fill="solid">
+              Add to Cart
+            </ion-button>
+            
+            
           </ion-card-header>
 
         </ion-card>

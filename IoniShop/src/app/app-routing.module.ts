@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'cart',
     loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
   },
+  {
+    path: 'store-dashboard',
+    loadChildren: () => import('./pages/store-dashboard/store-dashboard.module').then( m => m.StoreDashboardPageModule)
+  },
 ];
 
 @NgModule({
