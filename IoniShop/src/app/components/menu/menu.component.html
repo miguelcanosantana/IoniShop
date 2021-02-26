@@ -1,6 +1,9 @@
 <ion-menu side="start" menuId="main-menu" contentId="main-content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar class="ion-color" [ngStyle]="{
+      'background': this.tempSettings.mainColor,
+      'color': 'white'
+    }">
       <ion-title>Options</ion-title>
     </ion-toolbar>
   </ion-header>

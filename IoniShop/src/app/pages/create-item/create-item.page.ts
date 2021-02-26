@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ToastController } from '@ionic/angular';
 import { Item } from 'src/app/model/item';
+import { StoreConfig } from 'src/app/model/store-config';
 import { ItemsService } from 'src/app/services/items.service';
+import { StoreSettingsService } from 'src/app/services/store-settings.service';
 
 @Component({
   selector: 'app-create-item',
@@ -21,13 +23,28 @@ export class CreateItemPage implements OnInit {
 
   item: Item;
 
+  tempSettings: StoreConfig = {
+    name: '',
+    icon: '',
+    image: '',
+    mainColor: '',
+    secondaryColor: '',
+    roundType: 1
+  }
+
 
   constructor(
     private menu: MenuController,
     private itemService: ItemsService,
     private router: Router,
-    public toast: ToastController
-  ) { }
+    public toast: ToastController,
+    public storeSettings: StoreSettingsService
+  ) {
+
+    //Get Settings from Store
+    this.storeSettings.getSettings()
+    .subscribe(settings => this.tempSettings = settings);
+  }
 
 
   ngOnInit() {

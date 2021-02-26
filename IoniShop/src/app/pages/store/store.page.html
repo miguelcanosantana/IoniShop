@@ -1,5 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="ion-color" [ngStyle]="{
+    'background': this.tempSettings.mainColor,
+    'color': 'white'
+  }">
     <ion-buttons slot="start">
       <ion-buttons slot="start">
         <ion-menu-button menu="main-menu"></ion-menu-button>
@@ -11,13 +14,18 @@
 
 <ion-content class="ion-padding">
 
+  <!-- [ngStyle]="{'background-color': this.tempSettings.mainColor}" -->
+
   <!-- Go to Cart Button-->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="goToCart()">
+    <ion-fab-button class="ion-color" (click)="goToCart()" [ngStyle]="{
+      'background-color': this.tempSettings.secondaryColor, 
+      'color': 'white',
+      'border-radius' : '30px'
+    }">
       <ion-icon name="cart-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 
   <!-- Grid of Items -->
   <ion-grid>
@@ -25,23 +33,35 @@
 
       <ion-col size-xs="12" size-sm="6" size-xl="4" *ngFor="let item of itemList | async">
 
-        <ion-card class="card">
+        <ion-card class="card" [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
   
           <ion-card-content class="ion-text-center">
             <img class="card-image" src="{{item.photo}}" alt="Can't load {{item.name}} image">
           </ion-card-content>
 
           <ion-card-header>
-            <ion-card-subtitle>{{item.shortDesc}}</ion-card-subtitle>
-            <ion-card-title>{{item.name}}</ion-card-title>
-            <ion-card-title>{{item.price | currency}}</ion-card-title>
+            <ion-card-title class="ion-text-center">{{item.name}}</ion-card-title>
+            <ion-card-title class="ion-text-center">{{item.price | currency}}</ion-card-title>
+            <ion-card-subtitle class="ion-text-center">{{item.shortDesc}}</ion-card-subtitle>
+
+            <br>
 
             <!-- See details -->
-            <ion-button (click)="onClick()" expand="block" fill="clear">
-              See details
+            <ion-button [ngStyle]="{ 
+              'color': this.tempSettings.mainColor, 
+              'border-radius': this.tempSettings.roundType * 4 + 'px'
+            }" (click)="onClick()" expand="block" fill="clear">
+              See Details
             </ion-button>
 
-            <ion-button (click)="onClick()" expand="block" fill="solid">
+            <!-- Add to cart-->
+            <ion-button [ngStyle]="{
+              'background': this.tempSettings.mainColor, 
+              'color': 'white', 
+              'border-radius': this.tempSettings.roundType * 4 + 'px'
+            }" (click)="onClick()" expand="block" fill="clear">
               Add to Cart
             </ion-button>
             

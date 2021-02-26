@@ -9,10 +9,9 @@ import { StoreConfig } from '../model/store-config';
 })
 export class StoreSettingsService {
 
-  //Variables
   defaultSettings: StoreConfig = {
     name: 'Store',
-    favicon: 'https://upload.wikimedia.org/wikipedia/commons/7/77/OSP_Store_%28128px%29.png',
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/7/77/OSP_Store_%28128px%29.png',
     image: 'https://upload.wikimedia.org/wikipedia/commons/7/77/OSP_Store_%28128px%29.png',
     mainColor: '#3880ff',
     secondaryColor: '#3dc2ff',
@@ -20,15 +19,21 @@ export class StoreSettingsService {
   }
 
 
+  //Variables
   constructor(private fireStore: AngularFirestore) { }
 
 
-  //Add Store default settings (The first time or if they are deleted)
-  public addSettings(): Promise<DocumentReference> {
-    return this.fireStore.collection('store-settings/').add(this.defaultSettings);
+  //Add or Update Store custom Settings
+  public addCustomSettings(settings): Promise<void> {
+    return this.fireStore.collection('store-settings').doc("custom").set(settings);
   }
 
 
+  public getSettings(): Observable<StoreConfig> {
+    return this.fireStore.collection('store-settings').doc<StoreConfig>("custom").valueChanges();
+  }
+
+  /*
   //Get an Array with all settings
   public getSettings(): Observable<StoreConfig[]> {
 
@@ -43,6 +48,6 @@ export class StoreSettingsService {
           )
         )
       );
-  }
+  }*/
 
 }

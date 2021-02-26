@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IonThumbnail, MenuController } from '@ionic/angular';
-import { Observable } from 'rxjs';
 import { StoreConfig } from 'src/app/model/store-config';
 import { StoreSettingsService } from 'src/app/services/store-settings.service';
 
@@ -12,12 +11,24 @@ import { StoreSettingsService } from 'src/app/services/store-settings.service';
 export class StoreDashboardPage implements OnInit {
 
   //Variables
-  settings: Observable<StoreConfig[]>;
+  tempSettings: StoreConfig = {
+    name: '',
+    icon: '',
+    image: '',
+    mainColor: '',
+    secondaryColor: '',
+    roundType: 1
+  }
 
   constructor(
     private menu: MenuController,
-    private storeSettings: StoreSettingsService
-    ) {}
+    public storeSettings: StoreSettingsService
+    ) {
+
+      //Get Settings from Store
+      this.storeSettings.getSettings()
+      .subscribe(settings => this.tempSettings = settings);
+    }
 
 
   ngOnInit() {
@@ -29,6 +40,19 @@ export class StoreDashboardPage implements OnInit {
 
     //Disable Menu
     this.menu.enable(false);
+  }
+
+
+  //Save Settings
+  saveSettings() {
+    this.storeSettings.addCustomSettings(this.tempSettings);
+    console.log("Saved Settings to FireBase");
+  }
+
+  //Reset Settings
+  resetSettings() {
+    this.storeSettings.addCustomSettings(this.storeSettings.defaultSettings);
+    console.log("Default Settings Added to FireBase");
   }
 
 }
