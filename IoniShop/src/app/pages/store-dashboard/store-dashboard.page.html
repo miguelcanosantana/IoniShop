@@ -6,7 +6,10 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/store"></ion-back-button>
     </ion-buttons>
+
     <ion-title class="ion-text-center">Store Dashboard</ion-title>
+
+    <ion-icon slot="start"></ion-icon>
 
     <ion-buttons slot="end">
 
@@ -21,80 +24,80 @@
 
 <ion-content class="ion-padding">
 
-    <!-- Grid of Items -->
-    <ion-grid>
-      <ion-row>
-  
-        <ion-col></ion-col>
+  <!-- Grid of Settings -->
+  <ion-grid>
+    <ion-row>
 
-        <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+      <ion-col></ion-col>
 
-          <ion-card [ngStyle]="{
-            'border-radius': this.tempSettings.roundType * 4 + 'px'
-          }">
-            <ion-card-header>
-              <ion-card-title class="ion-text-center">Store Settings</ion-card-title>
-            </ion-card-header>
-          </ion-card>
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
 
-          <ion-card [ngStyle]="{
-            'border-radius': this.tempSettings.roundType * 4 + 'px'
-          }">
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Store Settings</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          
+          <ion-card-content>
+
+            <!-- General Settings -->
+            <ion-card-subtitle color="dark" class="ion-text-center">General Settings</ion-card-subtitle>
             
-            <ion-card-content>
+              <!-- Name -->
+              <ion-item>
+                <ion-label position="floating">Store Name</ion-label>
+                <ion-input [(ngModel)]="tempSettings.name"></ion-input>
+              </ion-item>
 
-              <!-- General Settings -->
-              <ion-card-subtitle color="dark" class="ion-text-center">General Settings</ion-card-subtitle>
-              
-                <!-- Name -->
-                <ion-item>
-                  <ion-label position="floating">Store Name</ion-label>
-                  <ion-input [(ngModel)]="tempSettings.name"></ion-input>
-                </ion-item>
+              <!-- Icon -->
+              <ion-item>
+                <ion-label position="floating">Store Icon</ion-label>
+                <ion-input [(ngModel)]="tempSettings.icon"></ion-input>
+              </ion-item>
 
-                <!-- Icon -->
-                <ion-item>
-                  <ion-label position="floating">Store Icon</ion-label>
-                  <ion-input [(ngModel)]="tempSettings.icon"></ion-input>
-                </ion-item>
+              <!-- Logo -->
+              <ion-item>
+                <ion-label position="floating">Store Logo</ion-label>
+                <ion-input [(ngModel)]="tempSettings.image"></ion-input>
+              </ion-item>
 
-                <!-- Logo -->
-                <ion-item>
-                  <ion-label position="floating">Store Logo</ion-label>
-                  <ion-input [(ngModel)]="tempSettings.image"></ion-input>
-                </ion-item>
+              <!-- Main Color -->
+              <ion-item>
+                <ion-label position="floating">Main App Color</ion-label>
+                <ion-input [(ngModel)]="tempSettings.mainColor"></ion-input>
+              </ion-item>
 
-                <!-- Main Color -->
-                <ion-item>
-                  <ion-label position="floating">Main App Color</ion-label>
-                  <ion-input [(ngModel)]="tempSettings.mainColor"></ion-input>
-                </ion-item>
+              <!-- Secondary Color -->
+              <ion-item>
+                <ion-label position="floating">Secondary App Color</ion-label>
+                <ion-input [(ngModel)]="tempSettings.secondaryColor"></ion-input>
+              </ion-item>
 
-                <!-- Secondary Color -->
-                <ion-item>
-                  <ion-label position="floating">Secondary App Color</ion-label>
-                  <ion-input [(ngModel)]="tempSettings.secondaryColor"></ion-input>
-                </ion-item>
+              <!-- Corner Type -->
+              <ion-item>
+                <ion-label position="stacked">Corner Type</ion-label>
+                <ion-range [(ngModel)]="tempSettings.roundType" min="0" max="2" step="1" snaps="true" ticks="true"></ion-range>
+              </ion-item>
 
-                <!-- Corner Type -->
-                <ion-item>
-                  <ion-label position="stacked">Corner Type</ion-label>
-                  <ion-range [(ngModel)]="tempSettings.roundType" min="0" max="2" step="1" snaps="true" ticks="true"></ion-range>
-                </ion-item>
+          </ion-card-content>
+        </ion-card>
 
-            </ion-card-content>
-          </ion-card>
+        <!-- Save Settings Button -->
+        <ion-button color="danger" (click)="this.resetSettings()" expand="block" fill="clear">
+        Reset Settings to Default
+        </ion-button>
 
-          <!-- Save Settings Button -->
-          <ion-button color="danger" (click)="this.resetSettings()" expand="block" fill="clear">
-          Reset Settings to Default
-          </ion-button>
+      </ion-col>
 
-        </ion-col>
+      <ion-col></ion-col>
 
-        <ion-col></ion-col>
-
-      </ion-row>
-    </ion-grid>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

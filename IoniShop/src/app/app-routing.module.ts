@@ -23,6 +23,18 @@ const routes: Routes = [
     path: 'store-dashboard',
     loadChildren: () => import('./pages/store-dashboard/store-dashboard.module').then( m => m.StoreDashboardPageModule)
   },
+  {
+    path: 'user-page',
+    loadChildren: () => import('./pages/user-page/user-page.module').then( m => m.UserPagePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
 ];
 
 @NgModule({

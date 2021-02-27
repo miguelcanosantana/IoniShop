@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar class="ion-color" [ngStyle]="{
+    'background': this.tempSettings.mainColor,
+    'color': 'white'
+  }">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Register</ion-title>
+
+    <ion-icon slot="end"></ion-icon>
+    <ion-icon slot="end"></ion-icon>
+    <ion-icon slot="end"></ion-icon>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Grid of Details -->
+  <ion-grid>
+    <ion-row>
+
+      <ion-col></ion-col>
+
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Register a new Account</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          
+          <ion-card-content>
+
+            <!-- Account Info -->
+            <ion-card-subtitle color="dark" class="ion-text-center">Account Details</ion-card-subtitle>
+            
+              <!-- Email -->
+              <ion-item>
+                <ion-label position="floating">Your Email</ion-label>
+                <ion-input [(ngModel)]="email"></ion-input>
+              </ion-item>
+
+              <!-- Password 1 -->
+              <ion-item>
+                <ion-label position="floating">Your Password</ion-label>
+                <ion-input [(ngModel)]="password1" type="password"></ion-input>
+              </ion-item>
+
+              <!-- Password 2 -->
+              <ion-item>
+                <ion-label position="floating">Repeat your Password</ion-label>
+                <ion-input [(ngModel)]="password2" type="password"></ion-input>
+              </ion-item>
+
+              <br>
+
+              <!-- Register Button -->
+              <ion-button [ngStyle]="{
+                'background': this.tempSettings.mainColor, 
+                'color': 'white', 
+                'border-radius': this.tempSettings.roundType * 4 + 'px'
+              }" (click)="tryRegister()" expand="block" fill="clear">
+                Register
+              </ion-button>
+
+          </ion-card-content>
+        </ion-card>
+
+        
+
+      </ion-col>
+
+      <ion-col></ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

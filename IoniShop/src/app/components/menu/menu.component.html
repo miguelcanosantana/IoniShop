@@ -22,8 +22,14 @@
         <ion-label>Store Dashboard</ion-label>
       </ion-item>
 
-      <!-- User Account -->
-      <ion-item (click)="goToUrl('/account')">
+      <!-- Login to Account (If user is not logged) -->
+      <ion-item [hidden]="userService.getCurrentUser() | async" (click)="goToUrl('/login')">
+        <ion-icon name="person" slot="end"></ion-icon>
+        <ion-label>Login to Account</ion-label>
+      </ion-item>
+
+      <!-- User Account (If user is logged) -->
+      <ion-item *ngIf="userService.getCurrentUser() | async" (click)="goToUrl('/user-page')">
         <ion-icon name="person" slot="end"></ion-icon>
         <ion-label>User Account</ion-label>
       </ion-item>

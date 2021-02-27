@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar class="ion-color" [ngStyle]="{
+    'background': this.tempSettings.mainColor,
+    'color': 'white'
+  }">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/store"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Login</ion-title>
+
+    <ion-icon slot="end"></ion-icon>
+    <ion-icon slot="end"></ion-icon>
+    <ion-icon slot="end"></ion-icon>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Grid of Details -->
+  <ion-grid>
+    <ion-row>
+
+      <ion-col></ion-col>
+
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Login to an existing Account</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          
+          <ion-card-content>
+
+            <!-- Account Info -->
+            <ion-card-subtitle color="dark" class="ion-text-center">Account Details</ion-card-subtitle>
+            
+              <!-- Email -->
+              <ion-item>
+                <ion-label position="floating">Your Email</ion-label>
+                <ion-input [(ngModel)]="email"></ion-input>
+              </ion-item>
+
+              <!-- Password -->
+              <ion-item>
+                <ion-label position="floating">Your Password</ion-label>
+                <ion-input [(ngModel)]="password" type="password"></ion-input>
+              </ion-item>
+
+              <br>
+
+              <!-- Login Button -->
+              <ion-button [ngStyle]="{
+                'background': this.tempSettings.mainColor, 
+                'color': 'white', 
+                'border-radius': this.tempSettings.roundType * 4 + 'px'
+              }" (click)="tryLogin()" expand="block" fill="clear">
+                Login
+              </ion-button>
+
+              <!-- Register -->
+              <ion-button [ngStyle]="{ 
+                'color': this.tempSettings.secondaryColor, 
+                'border-radius': this.tempSettings.roundType * 4 + 'px'
+              }" (click)="goRegister()" expand="block" fill="clear">
+                Register a new Account
+              </ion-button>
+
+              <!-- Reset Password -->
+              <ion-button color="danger" [ngStyle]="{
+                'border-radius': this.tempSettings.roundType * 4 + 'px'
+              }" (click)="onClick()" expand="block" fill="clear">
+                Reset Password
+              </ion-button>
+
+          </ion-card-content>
+        </ion-card>
+
+        
+
+      </ion-col>
+
+      <ion-col></ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

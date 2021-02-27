@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar class="ion-color" [ngStyle]="{
+    'background': this.tempSettings.mainColor,
+    'color': 'white'
+  }">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/store"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">User Profile</ion-title>
+
+    <ion-icon slot="start"></ion-icon>
+
+    <ion-buttons slot="end">
+
+      <!-- Save Settings Button -->
+      <ion-button (click)="this.saveSettings()" expand="block" fill="clear">
+        Edit
+      </ion-button>
+      
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Grid of Settings -->
+  <ion-grid>
+    <ion-row>
+
+      <ion-col></ion-col>
+
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">User Details</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          
+          <ion-card-content>
+
+            <!-- Basic Details -->
+            <ion-card-subtitle color="dark" class="ion-text-center">Basic Details</ion-card-subtitle>
+            
+              <!-- Username -->
+              <ion-item>
+                <ion-label position="floating">Username</ion-label>
+                <ion-input [(ngModel)]="tempSettings.name"></ion-input>
+              </ion-item>
+
+              <!-- First Name -->
+              <ion-item>
+                <ion-label position="floating">First Name</ion-label>
+                <ion-input [(ngModel)]="tempSettings.name"></ion-input>
+              </ion-item>
+
+              <!-- Last Name -->
+              <ion-item>
+                <ion-label position="floating">Last Name</ion-label>
+                <ion-input [(ngModel)]="tempSettings.name"></ion-input>
+              </ion-item>
+
+          </ion-card-content>
+        </ion-card>
+
+        <!-- Save Settings Button -->
+        <ion-button color="danger" (click)="this.closeSession()" expand="block" fill="clear">
+          Close Session
+        </ion-button>
+
+      </ion-col>
+
+      <ion-col></ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

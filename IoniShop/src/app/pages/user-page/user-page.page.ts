@@ -6,12 +6,12 @@ import { StoreSettingsService } from 'src/app/services/store-settings.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
+  selector: 'app-user-page',
+  templateUrl: './user-page.page.html',
+  styleUrls: ['./user-page.page.scss'],
 })
-export class MenuComponent implements OnInit {
-
+export class UserPagePage implements OnInit {
+  
   //Variables
   tempSettings: StoreConfig = {
     name: '',
@@ -21,29 +21,35 @@ export class MenuComponent implements OnInit {
     secondaryColor: '',
     roundType: 1
   }
-  
+
 
   constructor(
     private router: Router,
     private menu: MenuController,
     public storeSettings: StoreSettingsService,
-    public userService: UserService
-    ) {
+    private userService: UserService
+  ) {
 
-      //Get Settings from Store
-      this.storeSettings.getSettings()
-      .subscribe(settings => this.tempSettings = settings);
-    }
+    //Get Settings from Store
+    this.storeSettings.getSettings()
+    .subscribe(settings => this.tempSettings = settings);
+   }
 
 
   ngOnInit() {}
 
 
-  //Receives an Url, navigates to it and closes menu
-  goToUrl(url: string) {
-    
-    this.router.navigateByUrl(url); 
-    this.menu.toggle();
+  //Using ionViewDidEnter instead ionViewWillEnter prevents missing menu hide animation
+  ionViewDidEnter() {
+
+    //Disable Menu
+    this.menu.enable(false);
   }
 
+
+  //Close current session and redirect to Shop
+  async closeSession() {
+    this.userService.logout();
+    this.router.navigateByUrl('/store')
+  }
 }
