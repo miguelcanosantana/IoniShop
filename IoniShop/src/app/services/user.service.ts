@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Item } from '../model/item';
+import { VoidItem } from '../model/void-item';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +17,36 @@ export class UserService {
   constructor(
     private fireAuth: AngularFireAuth,
     private fireStore: AngularFirestore
-    ) {
-      /*
-    this.getCurrentUser().subscribe(
-      data => this.fireId = data.uid
-      
-    )*/
+    ) {}
 
-   }
+  /*
+  //Add an Item (a void one, knowing the Item's Id) to the User's Cart in FireStore
+  public addToCart(itemId: String): Promise<DocumentReference> {
+
+    //Check first if the item is already on the cart, so units can be added
+    let tempCart
+
+    let tempVoidItem: VoidItem = {
+
+    }
+
+    return this.fireStore.collection('users/' + this.fireId + '/cart').add(item);
+  }
+
+
+  //Get User's Cart from FireStore
+  public getCart(): Observable<VoidItem[]> {
+    return this.fireStore.collection<VoidItem>('users/' + this.fireId + '/cart').snapshotChanges().pipe(
+      map(
+        snaps => snaps.map(
+          snap => <VoidItem>{
+            itemId: snap.payload.doc.id,
+            ...snap.payload.doc.data()
+          }
+        )
+      )
+    );
+  }*/
 
 
   //Login FireAuth
