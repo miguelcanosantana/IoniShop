@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/model/item';
 import { StoreConfig } from 'src/app/model/store-config';
@@ -36,8 +36,9 @@ export class StorePage implements OnInit {
     private router: Router,
     private menu: MenuController,
     public storeSettings: StoreSettingsService,
-    private userService: UserService,
-    private cartService: CartService
+    public userService: UserService,
+    private cartService: CartService,
+    public alertController: AlertController
     ) {
 
       //Get Settings from Store
@@ -71,9 +72,38 @@ export class StorePage implements OnInit {
     this.router.navigateByUrl('/cart');
   }
 
+
   //Add an Item to the User's Cart in FireStore
   async addToCart(item: Item) {
     this.cartService.addToCart(item);
+  }
+
+
+  //Show Login Dialog and redirect to Login page if User wants
+  async presentloginDialog(itemName: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Login to buy Items',
+      message: '<strong> Do you want to Login now? </strong> ' + 
+      '</strong>. <br> <br> You need to Login to buy Items like <strong> '+ itemName + ' </strong>.',
+      buttons: [
+        {
+          text: 'Not Yet',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Login/Register',
+          handler: () => {
+            this.router.navigateByUrl('/login')
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

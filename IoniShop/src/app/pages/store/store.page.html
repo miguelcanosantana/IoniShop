@@ -14,8 +14,8 @@
 
 <ion-content class="ion-padding">
 
-  <!-- Go to Cart Button-->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <!-- Go to Cart Button -->
+  <ion-fab *ngIf="userService.getCurrentUser() | async" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button class="ion-color" (click)="goToCart()" [ngStyle]="{
       'background-color': this.tempSettings.secondaryColor, 
       'color': 'white',
@@ -54,8 +54,19 @@
               See Details
             </ion-button>
 
-            <!-- Add to cart-->
-            <ion-button [ngStyle]="{
+            <!-- Login before adding to Cart -->
+            <ion-button [hidden]="userService.getCurrentUser() | async"
+            [ngStyle]="{
+              'background': this.tempSettings.mainColor, 
+              'color': 'white', 
+              'border-radius': this.tempSettings.roundType * 4 + 'px'
+            }" (click)="presentloginDialog(item.name)" expand="block" fill="clear">
+              Login to Buy Items
+            </ion-button>
+
+            <!-- Add to Cart -->
+            <ion-button *ngIf="userService.getCurrentUser() | async" 
+            [ngStyle]="{
               'background': this.tempSettings.mainColor, 
               'color': 'white', 
               'border-radius': this.tempSettings.roundType * 4 + 'px'
