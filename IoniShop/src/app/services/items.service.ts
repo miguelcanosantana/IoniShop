@@ -28,6 +28,12 @@ export class ItemsService {
   }
 
 
+  //Get an Item knowing it's id
+  public getItemById(id: string): Observable<Item> {
+    return this.fireStore.collection('items/').doc<Item>(id).valueChanges();
+  }
+
+
   //Add a item to FireStore
   public submitItem(item: Item): Promise<DocumentReference> {
     return this.fireStore.collection('items/').add(item);

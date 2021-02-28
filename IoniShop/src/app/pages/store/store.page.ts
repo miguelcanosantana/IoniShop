@@ -53,6 +53,7 @@ export class StorePage implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.fireId)
   }
 
 
@@ -66,6 +67,11 @@ export class StorePage implements OnInit {
   //Go to Shopping Cart
   goToCart() {
     this.router.navigateByUrl('/cart');
+  }
+
+  //Add an Item to the User's Cart in FireStore
+  async addToCart(item: Item) {
+    this.userService.addToCart(this.fireId, item);
   }
 
 }

@@ -11,70 +11,63 @@ import { map } from 'rxjs/operators';
 })
 export class UserService {
 
-  fireId: String;
-
-
   constructor(
     private fireAuth: AngularFireAuth,
     private fireStore: AngularFirestore
     ) {}
 
-  /*
-  //Add an Item (a void one, knowing the Item's Id) to the User's Cart in FireStore
-  public addToCart(itemId: String): Promise<DocumentReference> {
 
-    //Check first if the item is already on the cart, so units can be added
-    let tempCart
+  /*-------------------- CART --------------------*/
 
-    let tempVoidItem: VoidItem = {
-
+    //Add an Item (knowing the Item and User's Id) to the User's Cart in FireStore
+    public addToCart(fireId: string, item: Item): Promise<DocumentReference> {
+      return this.fireStore.collection('users/' + fireId + '/cart').add(item);
     }
 
-    return this.fireStore.collection('users/' + this.fireId + '/cart').add(item);
-  }
 
-
-  //Get User's Cart from FireStore
-  public getCart(): Observable<VoidItem[]> {
-    return this.fireStore.collection<VoidItem>('users/' + this.fireId + '/cart').snapshotChanges().pipe(
-      map(
-        snaps => snaps.map(
-          snap => <VoidItem>{
-            itemId: snap.payload.doc.id,
-            ...snap.payload.doc.data()
-          }
+    //Get User's Cart from FireStore
+    public getCart(fireId: string): Observable<Item[]> {
+      return this.fireStore.collection<Item>('users/' + fireId + '/cart/').snapshotChanges().pipe(
+        map(
+          snaps => snaps.map(
+            snap => <Item>{
+              itemId: snap.payload.doc.id,
+              ...snap.payload.doc.data()
+            }
+          )
         )
-      )
-    );
-  }*/
+      );
+    }
 
 
-  //Login FireAuth
-  public login(email: string, password: string): Promise<firebase.default.auth.UserCredential> {
-    return this.fireAuth.signInWithEmailAndPassword(email, password);
-  }
+  /*-------------------- FIRE AUTH --------------------*/
+
+    //Login FireAuth
+    public login(email: string, password: string): Promise<firebase.default.auth.UserCredential> {
+      return this.fireAuth.signInWithEmailAndPassword(email, password);
+    }
 
 
-  //Logout FireAuth
-  public logout(): Promise<void> {
-    return this.fireAuth.signOut();
-  }
+    //Logout FireAuth
+    public logout(): Promise<void> {
+      return this.fireAuth.signOut();
+    }
 
 
-  //Get Current User Logged FireAuth
-  public getCurrentUser(): Observable<firebase.default.User> {
-    return this.fireAuth.authState;
-  }
+    //Get Current User Logged FireAuth
+    public getCurrentUser(): Observable<firebase.default.User> {
+      return this.fireAuth.authState;
+    }
 
 
-  //Create User in FireAuth
-  public createUser(email: string, password: string):Promise<firebase.default.auth.UserCredential> {
-    return this.fireAuth.createUserWithEmailAndPassword(email, password);
-  }
+    //Create User in FireAuth
+    public createUser(email: string, password: string):Promise<firebase.default.auth.UserCredential> {
+      return this.fireAuth.createUserWithEmailAndPassword(email, password);
+    }
 
 
-  //Reset User password using Email FireAuth
-  public resetPassword(email: string): Promise<void> {
-    return this.fireAuth.sendPasswordResetEmail(email);
-  }
+    //Reset User password using Email FireAuth
+    public resetPassword(email: string): Promise<void> {
+      return this.fireAuth.sendPasswordResetEmail(email);
+    }
 }

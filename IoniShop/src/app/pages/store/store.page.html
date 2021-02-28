@@ -14,8 +14,6 @@
 
 <ion-content class="ion-padding">
 
-  <!-- [ngStyle]="{'background-color': this.tempSettings.mainColor}" -->
-
   <!-- Go to Cart Button-->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button class="ion-color" (click)="goToCart()" [ngStyle]="{
@@ -61,7 +59,7 @@
               'background': this.tempSettings.mainColor, 
               'color': 'white', 
               'border-radius': this.tempSettings.roundType * 4 + 'px'
-            }" (click)="onClick()" expand="block" fill="clear">
+            }" (click)="addToCart(item)" expand="block" fill="clear">
               Add to Cart
             </ion-button>
             
