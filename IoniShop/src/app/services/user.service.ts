@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Item } from '../model/item';
-import { VoidItem } from '../model/void-item';
 import { map } from 'rxjs/operators';
 
 @Injectable({

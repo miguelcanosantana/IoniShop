@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Item } from 'src/app/model/item';
 import { StoreConfig } from 'src/app/model/store-config';
-import { VoidItem } from 'src/app/model/void-item';
 import { ItemsService } from 'src/app/services/items.service';
 import { StoreSettingsService } from 'src/app/services/store-settings.service';
 import { UserService } from 'src/app/services/user.service';
