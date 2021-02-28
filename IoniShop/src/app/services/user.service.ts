@@ -11,62 +11,37 @@ import { map } from 'rxjs/operators';
 export class UserService {
 
   constructor(
-    private fireAuth: AngularFireAuth,
-    private fireStore: AngularFirestore
+    private fireAuth: AngularFireAuth
     ) {}
 
 
-  /*-------------------- CART --------------------*/
-
-    //Add an Item (knowing the Item and User's Id) to the User's Cart in FireStore
-    public addToCart(fireId: string, item: Item): Promise<DocumentReference> {
-      return this.fireStore.collection('users/' + fireId + '/cart').add(item);
-    }
+  //Login FireAuth
+  public login(email: string, password: string): Promise<firebase.default.auth.UserCredential> {
+    return this.fireAuth.signInWithEmailAndPassword(email, password);
+  }
 
 
-    //Get User's Cart from FireStore
-    public getCart(fireId: string): Observable<Item[]> {
-      return this.fireStore.collection<Item>('users/' + fireId + '/cart/').snapshotChanges().pipe(
-        map(
-          snaps => snaps.map(
-            snap => <Item>{
-              itemId: snap.payload.doc.id,
-              ...snap.payload.doc.data()
-            }
-          )
-        )
-      );
-    }
+  //Logout FireAuth
+  public logout(): Promise<void> {
+    return this.fireAuth.signOut();
+  }
 
 
-  /*-------------------- FIRE AUTH --------------------*/
-
-    //Login FireAuth
-    public login(email: string, password: string): Promise<firebase.default.auth.UserCredential> {
-      return this.fireAuth.signInWithEmailAndPassword(email, password);
-    }
+  //Get Current User Logged FireAuth
+  public getCurrentUser(): Observable<firebase.default.User> {
+    return this.fireAuth.authState;
+  }
 
 
-    //Logout FireAuth
-    public logout(): Promise<void> {
-      return this.fireAuth.signOut();
-    }
+  //Create User in FireAuth
+  public createUser(email: string, password: string):Promise<firebase.default.auth.UserCredential> {
+    return this.fireAuth.createUserWithEmailAndPassword(email, password);
+  }
 
 
-    //Get Current User Logged FireAuth
-    public getCurrentUser(): Observable<firebase.default.User> {
-      return this.fireAuth.authState;
-    }
+  //Reset User password using Email FireAuth
+  public resetPassword(email: string): Promise<void> {
+    return this.fireAuth.sendPasswordResetEmail(email);
+  }
 
-
-    //Create User in FireAuth
-    public createUser(email: string, password: string):Promise<firebase.default.auth.UserCredential> {
-      return this.fireAuth.createUserWithEmailAndPassword(email, password);
-    }
-
-
-    //Reset User password using Email FireAuth
-    public resetPassword(email: string): Promise<void> {
-      return this.fireAuth.sendPasswordResetEmail(email);
-    }
 }

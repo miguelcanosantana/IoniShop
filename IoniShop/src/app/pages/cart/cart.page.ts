@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Item } from 'src/app/model/item';
 import { StoreConfig } from 'src/app/model/store-config';
+import { CartService } from 'src/app/services/cart.service';
 import { ItemsService } from 'src/app/services/items.service';
 import { StoreSettingsService } from 'src/app/services/store-settings.service';
 import { UserService } from 'src/app/services/user.service';
@@ -34,7 +35,8 @@ export class CartPage implements OnInit {
     private router: Router,
     private menu: MenuController,
     public storeSettings: StoreSettingsService,
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartService
     ) { 
 
       //Get Settings from Store
@@ -46,7 +48,7 @@ export class CartPage implements OnInit {
       .subscribe(user => this.fireId = user.uid);
 
       //Get User's Cart
-      this.userService.getCart(this.fireId)
+      this.cartService.getCart()
       .subscribe(items => this.itemList = items);
     }
 

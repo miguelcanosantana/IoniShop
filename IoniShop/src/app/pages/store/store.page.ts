@@ -4,6 +4,7 @@ import { MenuController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/model/item';
 import { StoreConfig } from 'src/app/model/store-config';
+import { CartService } from 'src/app/services/cart.service';
 import { ItemsService } from 'src/app/services/items.service';
 import { StoreSettingsService } from 'src/app/services/store-settings.service';
 import { UserService } from 'src/app/services/user.service';
@@ -35,7 +36,8 @@ export class StorePage implements OnInit {
     private router: Router,
     private menu: MenuController,
     public storeSettings: StoreSettingsService,
-    private userService: UserService
+    private userService: UserService,
+    private cartService: CartService
     ) {
 
       //Get Settings from Store
@@ -71,7 +73,7 @@ export class StorePage implements OnInit {
 
   //Add an Item to the User's Cart in FireStore
   async addToCart(item: Item) {
-    this.userService.addToCart(this.fireId, item);
+    this.cartService.addToCart(item);
   }
 
 }
