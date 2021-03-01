@@ -38,6 +38,7 @@ export class ItemDetailsPage implements OnInit {
 
   fireId: string;
 
+
   constructor(
     private router: Router,
     private menu: MenuController,
@@ -65,6 +66,14 @@ export class ItemDetailsPage implements OnInit {
 
 
   ngOnInit() {}
+
+
+  //Using ionViewDidEnter instead ionViewWillEnter prevents missing menu hide animation
+  ionViewDidEnter() {
+
+    //Disable Menu
+    this.menu.enable(false);
+  }
 
 
   //Add an Item to the User's Cart in FireStore
