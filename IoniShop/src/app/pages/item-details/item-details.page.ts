@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, MenuController, ModalController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { AlertController, MenuController } from '@ionic/angular';
 import { Item } from 'src/app/model/item';
 import { StoreConfig } from 'src/app/model/store-config';
 import { CartService } from 'src/app/services/cart.service';
@@ -10,11 +9,11 @@ import { StoreSettingsService } from 'src/app/services/store-settings.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-store',
-  templateUrl: './store.page.html',
-  styleUrls: ['./store.page.scss'],
+  selector: 'app-item-details',
+  templateUrl: './item-details.page.html',
+  styleUrls: ['./item-details.page.scss'],
 })
-export class StorePage implements OnInit {
+export class ItemDetailsPage implements OnInit {
 
   //Variables
   tempSettings: StoreConfig = {
@@ -26,59 +25,46 @@ export class StorePage implements OnInit {
     roundType: 1
   }
 
-  fireId: string;
-  
-  itemList: Item[];
+  itemId: string;
 
+  item: Item = {
+    name: '',
+    photo: '',
+    price: 0,
+    shortDesc: '',
+    longDesc: '',
+    category: ''
+  }
+
+  fireId: string;
 
   constructor(
-    private itemService: ItemsService,
     private router: Router,
     private menu: MenuController,
     public storeSettings: StoreSettingsService,
+    private itemService: ItemsService,
     public userService: UserService,
     private cartService: CartService,
-    public alertController: AlertController,
-    public modalController: ModalController
-    ) {
+    private alertController: AlertController
+  ) {
 
-      //Get Settings from Store
-      this.storeSettings.getSettings()
-      .subscribe(settings => this.tempSettings = settings);
+    //Get Settings from Store
+    this.storeSettings.getSettings()
+    .subscribe(settings => this.tempSettings = settings);
 
-      //Get User from UserService
-      this.userService.getCurrentUser()
-      .subscribe(user => this.fireId = user.uid);
+    //Get User from UserService
+    this.userService.getCurrentUser()
+    .subscribe(user => this.fireId = user.uid);
 
-      //Get list of Shop items
-      this.itemService.getItems()
-      .subscribe(allItems => this.itemList = allItems);
-    }
+    //Get Item that has been clicked
+    this.itemId = this.itemService.retrieveItemId();
 
-
-  ngOnInit() {
-    console.log(this.fireId)
-  }
+    this.itemService.getItemById(this.itemId)
+    .subscribe(item => this.item = item);
+   }
 
 
-  ionViewWillEnter() {
-
-    //Enable Menu
-    this.menu.enable(true);
-  }
-
-
-  //Go to Shopping Cart
-  goToCart() {
-    this.router.navigateByUrl('/cart');
-  }
-
-
-  //Go to Details Page of the Item
-  goToDetails(itemId: string) {
-    this.itemService.passItemId(itemId);
-    this.router.navigateByUrl('/item-details');
-  }
+  ngOnInit() {}
 
 
   //Add an Item to the User's Cart in FireStore

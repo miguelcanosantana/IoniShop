@@ -8,7 +8,11 @@
         <ion-menu-button menu="main-menu"></ion-menu-button>
       </ion-buttons>
     </ion-buttons>
-    <ion-title>Shop</ion-title>
+
+    <img class="storeIcon" slot="start" src="{{tempSettings.icon}}" alt="">
+
+    <ion-title>{{tempSettings.name}}</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
@@ -29,59 +33,77 @@
   <ion-grid>
     <ion-row>
 
-      <ion-col size-xs="12" size-sm="6" size-xl="4" *ngFor="let item of itemList">
+      <ion-col></ion-col>
 
-        <ion-card class="card" [ngStyle]="{
-          'border-radius': this.tempSettings.roundType * 4 + 'px'
-        }">
-  
-          <ion-card-content class="ion-text-center">
-            <img class="card-image" src="{{item.photo}}" alt="Can't load {{item.name}} image">
-          </ion-card-content>
+      <ion-col size-xs="12" size-sm="10" size-md="12" size-lg="10">
 
-          <ion-card-header>
-            <ion-card-title class="ion-text-center">{{item.name}}</ion-card-title>
-            <ion-card-title class="ion-text-center">{{item.price | currency}}</ion-card-title>
-            <ion-card-subtitle class="ion-text-center">{{item.shortDesc}}</ion-card-subtitle>
+        <ion-grid>
+          <ion-row>
+      
+            <ion-col size-xs="12" size-sm="12" size-md="6" size-xl="4" *ngFor="let item of itemList">
+      
+              <ion-card class="card" [ngStyle]="{
+                'border-radius': this.tempSettings.roundType * 4 + 'px'
+              }">
+        
+                <ion-card-content class="ion-text-center">
+                  <img class="card-image" src="{{item.photo}}" alt="Can't load {{item.name}} image">
+                </ion-card-content>
+      
+                <ion-card-header>
+                  <ion-card-title class="ion-text-center">{{item.name}}</ion-card-title>
+                  <ion-card-title class="ion-text-center">{{item.price | currency}}</ion-card-title>
 
-            <br>
+                  <br>
 
-            <!-- See details -->
-            <ion-button [ngStyle]="{ 
-              'color': this.tempSettings.secondaryColor, 
-              'border-radius': this.tempSettings.roundType * 4 + 'px'
-            }" (click)="onClick()" expand="block" fill="clear">
-              See Details
-            </ion-button>
+                  <ion-card-subtitle class="ion-text-center">{{item.shortDesc}}</ion-card-subtitle>
+      
+                  <br>
+      
+                  <!-- See details -->
+                  <ion-button [ngStyle]="{ 
+                    'color': this.tempSettings.secondaryColor, 
+                    'border-radius': this.tempSettings.roundType * 4 + 'px'
+                  }" (click)="goToDetails(item.itemId)" expand="block" fill="clear">
+                    See Details
+                  </ion-button>
+      
+                  <!-- Login before adding to Cart -->
+                  <ion-button [hidden]="userService.getCurrentUser() | async"
+                  [ngStyle]="{
+                    'background': this.tempSettings.mainColor, 
+                    'color': 'white', 
+                    'border-radius': this.tempSettings.roundType * 4 + 'px'
+                  }" (click)="presentLoginDialog(item.name)" expand="block" fill="clear">
+                    Login to Buy Items
+                  </ion-button>
+      
+                  <!-- Add to Cart -->
+                  <ion-button *ngIf="userService.getCurrentUser() | async" 
+                  [ngStyle]="{
+                    'background': this.tempSettings.mainColor, 
+                    'color': 'white', 
+                    'border-radius': this.tempSettings.roundType * 4 + 'px'
+                  }" (click)="addToCart(item)" expand="block" fill="clear">
+                    Add to Cart
+                  </ion-button>
 
-            <!-- Login before adding to Cart -->
-            <ion-button [hidden]="userService.getCurrentUser() | async"
-            [ngStyle]="{
-              'background': this.tempSettings.mainColor, 
-              'color': 'white', 
-              'border-radius': this.tempSettings.roundType * 4 + 'px'
-            }" (click)="presentloginDialog(item.name)" expand="block" fill="clear">
-              Login to Buy Items
-            </ion-button>
-
-            <!-- Add to Cart -->
-            <ion-button *ngIf="userService.getCurrentUser() | async" 
-            [ngStyle]="{
-              'background': this.tempSettings.mainColor, 
-              'color': 'white', 
-              'border-radius': this.tempSettings.roundType * 4 + 'px'
-            }" (click)="addToCart(item)" expand="block" fill="clear">
-              Add to Cart
-            </ion-button>
-            
-            
-          </ion-card-header>
-
-        </ion-card>
+                </ion-card-header>
+      
+              </ion-card>
+      
+            </ion-col>
+      
+          </ion-row>
+        </ion-grid>
 
       </ion-col>
 
+      <ion-col></ion-col>
+
     </ion-row>
   </ion-grid>
+
+
 
 </ion-content>

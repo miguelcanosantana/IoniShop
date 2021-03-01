@@ -9,11 +9,26 @@ import { Item } from '../model/item';
 })
 export class ItemsService {
 
+  //Variables
+  itemIdToPass: string;
+
   
   constructor(private fireStore: AngularFirestore) { }
 
 
-  //Get all items from FireStore
+  //Pass ItemId to service
+  public passItemId(itemId: string) {
+    this.itemIdToPass = itemId;
+  }
+
+
+  //Retrieve ItemId from service
+  public retrieveItemId() {
+    return this.itemIdToPass;
+  }
+
+
+  //Get all Items from FireStore
   public getItems(): Observable<Item[]> {
     return this.fireStore.collection<Item>('items/').snapshotChanges().pipe(
       map(

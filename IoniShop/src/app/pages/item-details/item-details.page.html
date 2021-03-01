@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar class="ion-color" [ngStyle]="{
+    'background': this.tempSettings.mainColor,
+    'color': 'white'
+  }">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/store"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Details</ion-title>
+
+    <ion-icon slot="end"></ion-icon>
+    <ion-icon slot="end"></ion-icon>
+    <ion-icon slot="end"></ion-icon>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Grid of Details -->
+  <ion-grid>
+    <ion-row>
+
+      <ion-col></ion-col>
+
+      <ion-col size-xs="12" size-sm="10" size-md="8" size-lg="6" size-xl="4">
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          <ion-card-content class="ion-text-center">
+            <img class="card-image" src="{{item.photo}}" alt="Can't load {{item.name}} image">
+          </ion-card-content>
+
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">{{item.name}}</ion-card-title>
+
+            <br>
+
+            <!-- Login before adding to Cart -->
+            <ion-button [hidden]="userService.getCurrentUser() | async"
+            [ngStyle]="{
+              'background': this.tempSettings.mainColor, 
+              'color': 'white', 
+              'border-radius': this.tempSettings.roundType * 4 + 'px'
+            }" (click)="presentLoginDialog(item.name)" expand="block" fill="clear">
+              Login to Buy Items
+            </ion-button>
+
+            <!-- Add to Cart -->
+            <ion-button *ngIf="userService.getCurrentUser() | async" 
+            [ngStyle]="{
+              'background': this.tempSettings.mainColor, 
+              'color': 'white', 
+              'border-radius': this.tempSettings.roundType * 4 + 'px'
+            }" (click)="addToCart(item)" expand="block" fill="clear">
+              Add to Cart
+            </ion-button>
+
+          </ion-card-header>
+
+        </ion-card>
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          
+          <ion-card-content>
+
+            <!-- Item Info -->
+            <ion-card-subtitle color="dark" class="ion-text-center">Details of the Item</ion-card-subtitle>
+            
+              <br>
+
+              <!-- Price -->
+              <ion-item>
+                <ion-label>Price: {{item.price | currency}}</ion-label>
+              </ion-item>
+
+              <!-- Category -->
+              <ion-item>
+                <ion-label>Category: {{item.category}}</ion-label>
+              </ion-item>
+
+              <!-- Short Description -->
+              <ion-item>
+                <ion-text>{{item.shortDesc}}</ion-text>
+              </ion-item>
+
+              <br>
+
+          </ion-card-content>
+        </ion-card>
+
+
+        <ion-card [ngStyle]="{
+          'border-radius': this.tempSettings.roundType * 4 + 'px'
+        }">
+          
+          <ion-card-content>
+
+            <!-- Detailed Info -->
+            <ion-card-subtitle color="dark" class="ion-text-center">Detailed Info</ion-card-subtitle>
+
+              <br>
+
+              <!-- Long Description -->
+              <ion-item lines= "none">
+                <ion-text>{{item.longDesc}}</ion-text>
+              </ion-item>
+
+              <br>
+
+          </ion-card-content>
+        </ion-card>
+
+        
+
+      </ion-col>
+
+      <ion-col></ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
