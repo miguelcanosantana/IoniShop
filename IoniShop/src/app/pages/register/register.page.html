@@ -61,6 +61,24 @@
                 <ion-input [(ngModel)]="password2" type="password"></ion-input>
               </ion-item>
 
+              <!-- Username -->
+              <ion-item>
+                <ion-label position="floating">Username</ion-label>
+                <ion-input [(ngModel)]="tempDetails.username"></ion-input>
+              </ion-item>
+
+              <!-- First Name -->
+              <ion-item>
+                <ion-label position="floating">First Name (optional)</ion-label>
+                <ion-input [(ngModel)]="tempDetails.firstName"></ion-input>
+              </ion-item>
+
+              <!-- Last Name -->
+              <ion-item>
+                <ion-label position="floating">Last Name (optional)</ion-label>
+                <ion-input [(ngModel)]="tempDetails.lastName"></ion-input>
+              </ion-item>
+
               <br>
 
               <!-- Register Button -->

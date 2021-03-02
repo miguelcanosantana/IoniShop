@@ -19,9 +19,14 @@ export class CartService {
     private fireStore: AngularFirestore
   ) { 
   
-    this.userService.getCurrentUser().subscribe(
-      data => this.fireId = data.uid
-    )
+    if (userService.getCurrentUser()) {
+
+      this.userService.getCurrentUser().subscribe(
+        data => this.fireId = data.uid
+      )
+    } else {
+      console.log("Not logged yet.")
+    }
   }
 
 
