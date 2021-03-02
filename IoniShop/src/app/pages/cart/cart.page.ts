@@ -50,6 +50,7 @@ export class CartPage implements OnInit {
       //Get User's Cart
       this.cartService.getCart()
       .subscribe(items => this.itemList = items);
+      
     }
 
 
@@ -60,8 +61,31 @@ export class CartPage implements OnInit {
   //Using ionViewDidEnter instead ionViewWillEnter prevents missing menu hide animation
   ionViewDidEnter() {
 
+    //Optimize the Cart
+    this.shrinkCart();
+    
+
     //Disable Menu
     this.menu.enable(false);
   }
 
+  //Optimize the Cart
+  shrinkCart() {
+
+    for (let i = 0; i < this.itemList.length; i++) {
+      let item1 = this.itemList[i];
+      if (!item1.count) item1.count = 1;
+
+      for (let k = 0; k < this.itemList.length; k++) {
+        let item2 = this.itemList[k];
+
+        if (item1.itemId == item2.itemId && i != k) {
+          
+            item1.count ++;
+            this.itemList.splice(k, 1)
+        }
+      }
+    }
+  }
 }
+

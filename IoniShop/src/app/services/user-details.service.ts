@@ -17,7 +17,7 @@ export class UserDetailsService {
   ) {}
 
 
-  //Add User Empty Details
+  //Add User Details
   public addCustomSettings(userId: string, details: UserDetails): Promise<void> {
     return this.fireStore.collection('users/' + userId + '/details').doc("custom").set(details);
   }

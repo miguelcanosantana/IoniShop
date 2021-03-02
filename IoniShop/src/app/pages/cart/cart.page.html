@@ -68,8 +68,9 @@
   
                 <!-- Unit price and total price -->
                 <ion-list>
-                  <ion-label class="ion-text-right">Each unit: {{item.price | currency}}</ion-label>
-                  <ion-label class="ion-text-right">Price: {{item.price | currency}}</ion-label>
+                  <ion-label class="ion-text-right">Each unit: {{item.price| currency}}</ion-label>
+                  <ion-label class="ion-text-right">Number: {{item.count}}</ion-label>
+                  <ion-label class="ion-text-right">Total price: {{item.price * item.count | currency}}</ion-label>
                 </ion-list>
                 
               </ion-item>
