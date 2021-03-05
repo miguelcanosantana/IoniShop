@@ -1,8 +1,11 @@
 
 <!-- PROJECT LOGO --><br/>
 <p align="center">
+  
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="Media/logo.svg" alt="Logo" width="200" height="200">
+  </a>
 
-  <h3 align="center">IoniShop</h3>
   <p align="center">A Custom Shop made with Ionic</p>
   <br>
   <br>
