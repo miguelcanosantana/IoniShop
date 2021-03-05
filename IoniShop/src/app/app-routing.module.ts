@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'store',
+    redirectTo: 'last-time',
     pathMatch: 'full'
   },
   {
@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'item-details',
     loadChildren: () => import('./pages/item-details/item-details.module').then( m => m.ItemDetailsPageModule)
+  },
+  {
+    path: 'last-time',
+    loadChildren: () => import('./pages/last-time/last-time.module').then( m => m.LastTimePageModule)
   },
 ];
 
