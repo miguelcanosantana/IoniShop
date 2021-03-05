@@ -11,8 +11,8 @@ export class StoreSettingsService {
 
   defaultSettings: StoreConfig = {
     name: 'Store',
-    icon: 'https://www.iconsdb.com/icons/preview/white/cart-79-xxl.png',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/7/77/OSP_Store_%28128px%29.png',
+    icon: 'https://raw.githubusercontent.com/miguelcanosantana/IoniShop/main/Media/Icon.svg',
+    image: 'https://raw.githubusercontent.com/miguelcanosantana/IoniShop/main/Media/logo.svg',
     mainColor: '#3880ff',
     secondaryColor: '#3dc2ff',
     roundType: 1

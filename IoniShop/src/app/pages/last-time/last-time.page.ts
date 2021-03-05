@@ -56,7 +56,7 @@ export class LastTimePage implements OnInit {
   
 
   //Set the last time to when the button has been clicked and redirect to Shop
-  enterShop() {
+  enterStore() {
     let currentDate = new Date;
     console.log(currentDate);
     this.saveLastDate(currentDate);
